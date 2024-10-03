@@ -40,9 +40,9 @@ def get_pressure_data():
 
         if validate_pressure_data(pressure_systolic_data): 
             # Breaks the loop if data is valid and ends user input
-            print("Data is valid!")
+            print("Data is valid!\n")
             break
-
+    
     while True:
         # Second loop for user input to repeat asking for input 
         # while second set of data is invalid
@@ -57,12 +57,15 @@ def get_pressure_data():
 
         if validate_pressure_data(pressure_diastolic_data): 
             # Breaks the loop if data is valid and ends user input
-            print("Data is valid!")
+            print("Data is valid!\n")
             break
+
+    print(pressure_systolic_data)
+    print(pressure_diastolic_data)
 
     return pressure_systolic_data
     return pressure_diastolic_data
-    # Returns valid systolic and diastolic data after user input was validated
+    # Returns valid diastolic data after user input was validated
 
 def validate_pressure_data(values):
     """
