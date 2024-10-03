@@ -25,25 +25,70 @@ def get_pressure_data():
     Get the blood pressure numbers (systolic and diastolic) 
     via input from the user.
     """
-    print("Please enter your systolic (upper number) and diastolic (lower number) blood pressure numbers for the last seven days.")
-    print("Numbers should be separated by commas.")
-    print("Example: 110, 115, 105, 98, 113, 99, 102\n")
+    while True:
+        # First loop for user input to repeat asking for input 
+        # while first set of data is invalid
+        print("Please enter your systolic (upper number) blood pressure numbers for the last seven days.")
+        print("Numbers should be separated by commas.")
+        print("Example: 110, 115, 105, 98, 113, 99, 102\n")
 
-    data_str_one = input("Enter your systolic numbers here:\n")
+        data_str_one = input("Enter your systolic numbers here:\n")
 
-    pressure_systolic_data = data_str_one.split(",")
+        pressure_systolic_data = data_str_one.split(",")
 
-    print(f"The numbers you entered are: {pressure_systolic_data}")
+        #print(f"The numbers you entered are: {pressure_systolic_data}")
 
-    data_str_two = input("Enter your diastolic numbers here:\n")
+        if validate_pressure_data(pressure_systolic_data): 
+            # Breaks the loop if data is valid and ends user input
+            print("Data is valid!")
+            break
 
-    pressure_diastolic_data = data_str_two.split(",")
+    while True:
+        # Second loop for user input to repeat asking for input 
+        # while second set of data is invalid
+        print("Please enter your diastolic (lower number) blood pressure numbers for the last seven days.")
+        print("Numbers should be separated by commas.")
+        print("Example: 110, 115, 105, 98, 113, 99, 102\n")
+        data_str_two = input("Enter your diastolic numbers here:\n")
 
-    print(f"The numbers you entered are: {pressure_diastolic_data}")
+        pressure_diastolic_data = data_str_two.split(",")
 
+        #print(f"The numbers you entered are: {pressure_diastolic_data}")
 
+        if validate_pressure_data(pressure_diastolic_data): 
+            # Breaks the loop if data is valid and ends user input
+            print("Data is valid!")
+            break
 
-        
+    return pressure_systolic_data
+    return pressure_diastolic_data
+    # Returns valid systolic and diastolic data after user input was validated
+
+def validate_pressure_data(values):
+    """
+    Checks if user input data is valid
+    Converts all string values to integers inside the try
+    Raises ValueError if strings cannot be converted into int
+    or if there aren't exactly 7 values
+    """
+    try:
+        # Code that should work with no errors if data is valid
+        [int(value) for value in values]
+        if len(values) != 7:
+            # Should length of the values list not be seven (for seven days)
+            raise ValueError(
+                f"Numbers for the last seven days are needed, you provided {len(values)}"
+            )
+    except ValueError as e:
+        # Common shorthand variable e for error
+        print(f"Invalid data: {e}. Please try again.\n")
+        return False
+        # Returns False because data is invalid 
+        # which is picked up by while loop and tells it to continue running
+    
+    return True
+    # Data is valid and returns true, tells the while loop to break
+
 def main():
     """
     Run all program functions
