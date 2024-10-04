@@ -102,7 +102,10 @@ def main():
     """
     data_one = get_pressure_data_one()
     data_two = get_pressure_data_two()
-    print(data_one)
-    print(data_two)
+    pressure_systolic_data = [int(num) for num in data_one]
+    pressure_diastolic_data = [int(num) for num in data_two]
+    # Converts both data sets from string to integers
+    print(pressure_systolic_data)
+    print(pressure_diastolic_data)
 
 main()
