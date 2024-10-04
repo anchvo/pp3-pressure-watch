@@ -120,6 +120,7 @@ def calculate_average_systolic():
     """
     Calculate the average systolic blood pressure 
     over the last seven days based on provided data
+    stored in worksheet
     """
     print("Calculating average systolic...\n")
 
@@ -134,6 +135,24 @@ def calculate_average_systolic():
 
     return average_systolic
 
+def calculate_average_diastolic():
+    """
+    Calculate the average diastolic blood pressure 
+    over the last seven days based on provided data
+    stored in worksheet
+    """
+    print("Calculating average diastolic...\n")
+
+    pressure_worksheet = SHEET.worksheet("pressure")
+    diastolic_data = pressure_worksheet.get("B3:H3")
+
+    diastolic_list= sum(diastolic_data, [])
+    diastolic_numbers = [int(num) for num in diastolic_list]
+    average = sum(diastolic_numbers) / 7
+    average_diastolic = round(average)
+    print(average_diastolic)
+
+    return average_diastolic
 
 def main():
     """
@@ -149,5 +168,6 @@ def main():
     update_systolic_data(pressure_systolic_data)
     update_diastolic_data(pressure_diastolic_data)
     average_systolic_pressure = calculate_average_systolic()
+    average_diastolic_pressure = calculate_average_diastolic()
 
 main()
