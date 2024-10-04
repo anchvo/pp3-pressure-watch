@@ -20,9 +20,9 @@ SHEET = GSPREAD_CLIENT.open("pressure_watch")
 # Opens the exel sheet in google account that was set up before, 
 # name needs to be exact
 
-def get_pressure_data():
+def get_pressure_data_one():
     """
-    Get the blood pressure numbers (systolic and diastolic) 
+    Get the systolic blood pressure numbers 
     via input from the user.
     """
     while True:
@@ -43,6 +43,14 @@ def get_pressure_data():
             print("Data is valid!\n")
             break
     
+    return pressure_systolic_data
+    # Returns valid systolic data after user input was validated
+
+def get_pressure_data_two():
+    """
+    Get the diastolic blood pressure numbers 
+    via input from the user.
+    """
     while True:
         # Second loop for user input to repeat asking for input 
         # while second set of data is invalid
@@ -60,10 +68,6 @@ def get_pressure_data():
             print("Data is valid!\n")
             break
 
-    print(pressure_systolic_data)
-    print(pressure_diastolic_data)
-
-    return pressure_systolic_data
     return pressure_diastolic_data
     # Returns valid diastolic data after user input was validated
 
@@ -96,6 +100,9 @@ def main():
     """
     Run all program functions
     """
-    data = get_pressure_data()
+    data_one = get_pressure_data_one()
+    data_two = get_pressure_data_two()
+    print(data_one)
+    print(data_two)
 
 main()
