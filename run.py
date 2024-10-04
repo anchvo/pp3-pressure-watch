@@ -56,7 +56,7 @@ def get_pressure_data_two():
         # while second set of data is invalid
         print("Please enter your diastolic (lower number) blood pressure numbers for the last seven days.")
         print("Numbers should be separated by commas.")
-        print("Example: 110, 115, 105, 98, 113, 99, 102\n")
+        print("Example: 79, 82, 75, 72, 80, 71, 76\n")
         data_str_two = input("Enter your diastolic numbers here:\n")
 
         pressure_diastolic_data = data_str_two.split(",")
@@ -131,7 +131,8 @@ def calculate_average_systolic():
     systolic_numbers = [int(num) for num in systolic_list]
     average = sum(systolic_numbers) / 7
     average_systolic = round(average)
-    print(average_systolic)
+
+    print(f"Your average systolic blood pressure over the last seven days is {average_systolic}\n")
 
     return average_systolic
 
@@ -150,9 +151,20 @@ def calculate_average_diastolic():
     diastolic_numbers = [int(num) for num in diastolic_list]
     average = sum(diastolic_numbers) / 7
     average_diastolic = round(average)
-    print(average_diastolic)
 
+    print(f"Your average diastolic blood pressure over the last seven days is {average_diastolic}\n")
+    
     return average_diastolic
+
+#def update_average_systolic_data(data_one):
+    #"""
+    #Updates average systolic data in average worksheet,
+    #add a new row with the calculated average
+    #"""
+    #print("Updating systolic average data...\n")
+    #average_worksheet = SHEET.worksheet("average")
+    #average_worksheet.append_row(data_one, table_range="B2")
+    #print("Database updated!\n")
 
 def main():
     """
@@ -169,5 +181,9 @@ def main():
     update_diastolic_data(pressure_diastolic_data)
     average_systolic_pressure = calculate_average_systolic()
     average_diastolic_pressure = calculate_average_diastolic()
+    print(average_systolic_pressure)
+    print(average_diastolic_pressure)
+    #update_average_systolic_data(average_systolic_pressure)
 
+print(f"Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n")
 main()
