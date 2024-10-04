@@ -96,6 +96,27 @@ def validate_pressure_data(values):
     return True
     # Data is valid and returns true, tells the while loop to break
 
+def update_systolic_data(data_one):
+    """
+    Updates systolic data in pressure worksheet,
+    add a new row with the list data from data_one
+    """
+    print("Updating systolic pressure data...\n")
+    pressure_worksheet = SHEET.worksheet("pressure")
+    pressure_worksheet.append_row(data_one, table_range="B2:H2")
+    print("Database updated!\n")
+
+def update_diastolic_data(data_two):
+    """
+    Updates diastolic data in pressure worksheet,
+    add a new row with the list data from data_two
+    """
+    print("Updating diastolic pressure data...\n")
+    pressure_worksheet = SHEET.worksheet("pressure")
+    pressure_worksheet.append_row(data_two, table_range="B3:H3")
+    print("Database updated!\n")
+
+
 def main():
     """
     Run all program functions
@@ -107,5 +128,7 @@ def main():
     # Converts both data sets from string to integers
     print(pressure_systolic_data)
     print(pressure_diastolic_data)
+    update_systolic_data(pressure_systolic_data)
+    update_diastolic_data(pressure_diastolic_data)
 
 main()
