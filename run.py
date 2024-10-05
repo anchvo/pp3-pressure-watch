@@ -40,13 +40,10 @@ def get_pressure_data_one():
 
         pressure_systolic_data = data_str_one.split(",")
 
-        #print(f"The numbers you entered are: {pressure_systolic_data}")
-
         if validate_pressure_data(pressure_systolic_data):
             # Breaks the loop if data is valid and ends user input
             print("[italic green]Data is valid!\n[/italic green]")
             break
-    
     return pressure_systolic_data
     # Returns valid systolic data after user input was validated
 
@@ -69,13 +66,10 @@ def get_pressure_data_two():
 
         pressure_diastolic_data = data_str_two.split(",")
 
-        #print(f"The numbers you entered are: {pressure_diastolic_data}")
-
         if validate_pressure_data(pressure_diastolic_data):
             # Breaks the loop if data is valid and ends user input
             print("[italic green]Data is valid!\n[/italic green]")
             break
-
     return pressure_diastolic_data
     # Returns valid diastolic data after user input was validated
 
@@ -96,11 +90,11 @@ def validate_pressure_data(values):
                 f"[red]Numbers for the last seven days are needed, "
                 f"you provided {len(values)}.[/red]"
             )
-        #elif 40 <= value <= 400:
+        # elif 40 <= value <= 400:
             # Should entered number be below 50 or above 400
-            #raise ValueError(
+            # raise ValueError(
             #    f"Numbers should be between 40 and 400."
-            #)
+            # )
 
     except ValueError as e:
         # Common shorthand variable e for error
@@ -155,7 +149,6 @@ def calculate_average_systolic():
         f"[bold]Your average systolic blood pressure\n"
         f"over the last seven days is {average_systolic}\n[/bold]"
         )
-
     return average_systolic
 
 
@@ -179,7 +172,6 @@ def calculate_average_diastolic():
         f"[bold]Your average diastolic blood pressure\n"
         f"over the last seven days is {average_diastolic}\n[/bold]"
         )
-    
     return average_diastolic
 
 
@@ -251,16 +243,6 @@ def check_pressure_classification():
         print(("[bold green]Your average blood pressure is normal.\n"
               "Regular check-ups are still adviced!\n[/bold green]"))
 
-    # low check numbers
-    # 81, 85, 87, 90, 88, 82, 91
-    # 60, 59, 57, 61, 56, 59, 58
-    # high check numbers
-    # 120, 124, 130, 154, 133, 129, 140
-    # 81, 89, 91, 84, 79, 88, 93
-    # normal check numbers
-    # 114, 118, 113, 117, 109, 108, 104
-    # 71, 79, 72, 77, 80, 73, 70
-
 
 def clear_sheet_data():
     """
@@ -307,3 +289,4 @@ print(
     f"[italic]If you want to run again,\n"
     f"click the button 'Run Program' at the top![/italic]"
     )
+
