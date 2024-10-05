@@ -2,7 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from rich import print
 
-# Values of variables do not change so they 
+# Values of variables do not change so they
 # are constant variables written in capital letters
 
 SCOPE = [
@@ -18,18 +18,21 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("pressure_watch")
-# Opens the exel sheet in google account that was set up before, 
+# Opens the exel sheet in google account that was set up before,
 # name needs to be exact
+
 
 def get_pressure_data_one():
     """
-    Get the systolic blood pressure numbers 
+    Get the systolic blood pressure numbers
     via input from the user.
     """
     while True:
-        # First loop for user input to repeat asking for input 
+        # First loop for user input to repeat asking for input
         # while first set of data is invalid
-        print("Please enter your [underline]systolic[/underline] (upper number) blood pressure numbers for the last seven days.")
+        print(("Please enter your [underline]systolic[/underline]"
+              "(upper number) blood pressure numbers "
+               "for the last seven days."))
         print("Numbers should be separated by commas.")
         print("Example: 110, 115, 105, 98, 113, 99, 102\n")
 
@@ -39,7 +42,7 @@ def get_pressure_data_one():
 
         #print(f"The numbers you entered are: {pressure_systolic_data}")
 
-        if validate_pressure_data(pressure_systolic_data): 
+        if validate_pressure_data(pressure_systolic_data):
             # Breaks the loop if data is valid and ends user input
             print("Data is valid!\n")
             break
@@ -47,15 +50,18 @@ def get_pressure_data_one():
     return pressure_systolic_data
     # Returns valid systolic data after user input was validated
 
+
 def get_pressure_data_two():
     """
-    Get the diastolic blood pressure numbers 
+    Get the diastolic blood pressure numbers
     via input from the user.
     """
     while True:
-        # Second loop for user input to repeat asking for input 
+        # Second loop for user input to repeat asking for input
         # while second set of data is invalid
-        print("Please enter your [underline]diastolic[/underline] (lower number) blood pressure numbers for the last seven days.")
+        print(("Please enter your [underline]diastolic[/underline]"
+              "(lower number) blood pressure numbers "
+               "for the last seven days."))
         print("Numbers should be separated by commas.")
         print("Example: 79, 82, 75, 72, 80, 71, 76\n")
         data_str_two = input("Enter your diastolic numbers here:\n")
@@ -64,13 +70,14 @@ def get_pressure_data_two():
 
         #print(f"The numbers you entered are: {pressure_diastolic_data}")
 
-        if validate_pressure_data(pressure_diastolic_data): 
+        if validate_pressure_data(pressure_diastolic_data):
             # Breaks the loop if data is valid and ends user input
             print("Data is valid!\n")
             break
 
     return pressure_diastolic_data
     # Returns valid diastolic data after user input was validated
+
 
 def validate_pressure_data(values):
     """
@@ -85,7 +92,8 @@ def validate_pressure_data(values):
         if len(values) != 7:
             # Should length of the values list not be seven (for seven days)
             raise ValueError(
-                f"Numbers for the last seven days are needed, you provided {len(values)}."
+                f"Numbers for the last seven days are needed, "
+                f"you provided {len(values)}."
             )
         #elif 40 <= value <= 400:
             # Should entered number be below 50 or above 400
@@ -97,11 +105,12 @@ def validate_pressure_data(values):
         # Common shorthand variable e for error
         print(f"Invalid data: {e}. Please try again.\n")
         return False
-        # Returns False because data is invalid 
+        # Returns False because data is invalid
         # which is picked up by while loop and tells it to continue running
     
     return True
     # Data is valid and returns true, tells the while loop to break
+
 
 def update_systolic_data(data_one):
     """
@@ -113,6 +122,7 @@ def update_systolic_data(data_one):
     pressure_worksheet.append_row(data_one, table_range="B2:H2")
     print("Database updated!\n")
 
+
 def update_diastolic_data(data_two):
     """
     Updates diastolic data in pressure worksheet,
@@ -123,9 +133,10 @@ def update_diastolic_data(data_two):
     pressure_worksheet.append_row(data_two, table_range="B3:H3")
     print("Database updated!\n")
 
+
 def calculate_average_systolic():
     """
-    Calculate the average systolic blood pressure 
+    Calculate the average systolic blood pressure
     over the last seven days based on provided data
     stored in worksheet
     """
@@ -134,18 +145,22 @@ def calculate_average_systolic():
     pressure_worksheet = SHEET.worksheet("pressure")
     systolic_data = pressure_worksheet.get("B2:H2")
 
-    systolic_list= sum(systolic_data, [])
+    systolic_list = sum(systolic_data, [])
     systolic_numbers = [int(num) for num in systolic_list]
     average = sum(systolic_numbers) / 7
     average_systolic = round(average)
 
-    print(f"Your average systolic blood pressure over the last seven days is {average_systolic}\n")
+    print(
+        f"Your average systolic blood pressure "
+        f"over the last seven days is {average_systolic}\n"
+        )
 
     return average_systolic
 
+
 def calculate_average_diastolic():
     """
-    Calculate the average diastolic blood pressure 
+    Calculate the average diastolic blood pressure
     over the last seven days based on provided data
     stored in worksheet
     """
@@ -154,14 +169,18 @@ def calculate_average_diastolic():
     pressure_worksheet = SHEET.worksheet("pressure")
     diastolic_data = pressure_worksheet.get("B3:H3")
 
-    diastolic_list= sum(diastolic_data, [])
+    diastolic_list = sum(diastolic_data, [])
     diastolic_numbers = [int(num) for num in diastolic_list]
     average = sum(diastolic_numbers) / 7
     average_diastolic = round(average)
 
-    print(f"Your average diastolic blood pressure over the last seven days is {average_diastolic}\n")
+    print(
+        f"Your average diastolic blood pressure "
+        f"over the last seven days is {average_diastolic}\n"
+        )
     
     return average_diastolic
+
 
 def update_average_systolic_data(average_systolic_pressure):
     """
@@ -173,6 +192,7 @@ def update_average_systolic_data(average_systolic_pressure):
     average_worksheet.update_acell("B2", average_systolic_pressure)
     print("Database updated!\n")
 
+
 def update_average_diastolic_data(average_diastolic_pressure):
     """
     Updates average diastolic data in average worksheet,
@@ -182,6 +202,7 @@ def update_average_diastolic_data(average_diastolic_pressure):
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B3", average_diastolic_pressure)
     print("Database updated!\n")
+
 
 def check_pressure_classification():
     """
@@ -215,24 +236,30 @@ def check_pressure_classification():
     high_systolic_number = [int(num) for num in high_systolic_pressure]
     high_diastolic_number = [int(num) for num in high_diastolic_pressure]
 
-    if systolic_pressure_number <= low_systolic_number and diastolic_pressure_number <= low_diastolic_number:
-        print("Your average blood pressure is too low.\nYou should seek medical advice!\n")
+    if (systolic_pressure_number <= low_systolic_number
+       and diastolic_pressure_number <= low_diastolic_number):
+        print(("Your average blood pressure is too low.\n"
+              "You should seek medical advice!\n"))
 
-    elif systolic_pressure_number >= high_systolic_number and diastolic_pressure_number >= high_diastolic_number:
-        print("Your average blood pressure is too high.\nYou should seek medical advice!\n")
+    elif (systolic_pressure_number >= high_systolic_number
+          and diastolic_pressure_number >= high_diastolic_number):
+        print(("Your average blood pressure is too high.\n"
+              "You should seek medical advice!\n"))
 
     else:
-        print ("Your average blood pressure is normal.\nRegular check-ups are still adviced!\n")
+        print(("Your average blood pressure is normal.\n"
+              "Regular check-ups are still adviced!\n"))
 
     # low check numbers
     # 81, 85, 87, 90, 88, 82, 91
     # 60, 59, 57, 61, 56, 59, 58
-    # high check numbers 
+    # high check numbers
     # 120, 124, 130, 154, 133, 129, 140
     # 81, 89, 91, 84, 79, 88, 93
     # normal check numbers
     # 114, 118, 113, 117, 109, 108, 104
     # 71, 79, 72, 77, 80, 73, 70
+
 
 def main():
     """
@@ -251,7 +278,17 @@ def main():
     update_average_diastolic_data(average_diastolic_pressure)
     check_pressure_classification()
 
-print(f"[bold magenta]Welcome to Pressure Watch!:red_heart-emoji:\nA quick and easy way to check if your blood pressure is something to worry about!\n[/bold magenta]")
+
+print(
+    f"[bold magenta]Welcome to Pressure Watch!:red_heart-emoji:\n"
+    f"A quick and easy way to check "
+    f"if your blood pressure is something to worry about!\n[/bold magenta]"
+    )
 main()
 
-print(f"[bold magenta]Thank you for using Pressure Watch!:red_heart-emoji:[/bold magenta]\n[italic]If you want to run again,\nclick the button 'Run Program' at the top![/italic]")
+print(
+    f"[bold magenta]Thank you for using Pressure Watch!"
+    f":red_heart-emoji:[/bold magenta]\n"
+    f"[italic]If you want to run again,\n"
+    f"click the button 'Run Program' at the top![/italic]"
+    )
