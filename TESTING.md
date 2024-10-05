@@ -48,27 +48,17 @@ The attached Google Sheets was manually tested to check if user input shows up c
 At the start of the program, only the classification worksheet contains data that is set. 
 
 The pressure worksheet contains names but no numbers that can be used. The needed numbers are filled in by the user input for systolic and diastolic data. This works as expected.
-Screenshot
 
 The average worksheet also contains names but no numbers. The needed numbers are filled in after a calculation function runs and passed the correct numbers. This works as expected. 
-Screenshot
 
 The classification workheet contains all necessary data. The data is used in a calculation function, that compares the average number to the classification numbers. This works as expected.
-Screenshot
 
 Data passed to the Sheet are cleared out via a clear function at the end of the program. This works as expected.
 
 ## Python Validation
 
-The Python code was run through the [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/#)
+The Python code was run through the [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/#) and returned no major errors. 
 
-
-## Future Updates
-
-After testing, possible future updates could include: 
-
-- The ability to clear the excel sheet via a function an user input to allow new data to be put it
-- Running the program again without a complete restart
 
 
 
