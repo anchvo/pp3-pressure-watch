@@ -177,6 +177,64 @@ def update_average_diastolic_data(average_diastolic_pressure):
     average_worksheet.update_acell("B3", average_diastolic_pressure)
     print("Database updated!\n")
 
+def check_pressure_classification():
+    """
+    Compares the calculated average pressure data with
+    the classification data in classification worksheet,
+    gives result and recommendation to the user
+    """
+    print("Checking classification database...")
+    average_worksheet = SHEET.worksheet("average")
+    classification_worksheet = SHEET.worksheet("classification")
+
+    systolic_average = average_worksheet.get("B2")
+    diastolic_average = average_worksheet.get("B3")
+    systolic_pressure = sum(systolic_average, [])
+    diastolic_pressure = sum(diastolic_average, [])
+    systolic_pressure_number = [int(num) for num in systolic_pressure]
+    diastolic_pressure_number = [int(num) for num in diastolic_pressure]
+    print(systolic_pressure_number)
+    print(diastolic_pressure_number)
+
+    low_systolic = classification_worksheet.get("B2")
+    low_diastolic = classification_worksheet.get("B3")
+    high_systolic = classification_worksheet.get("D2")
+    high_diastolic = classification_worksheet.get("D3")
+
+    low_systolic_pressure = sum(low_systolic, [])
+    low_diastolic_pressure = sum(low_diastolic, [])
+    high_systolic_pressure = sum(high_systolic, [])
+    high_diastolic_pressure = sum(high_diastolic, [])
+
+    low_systolic_number = [int(num) for num in low_systolic_pressure]
+    low_diastolic_number = [int(num) for num in low_diastolic_pressure]
+    high_systolic_number = [int(num) for num in high_systolic_pressure]
+    high_diastolic_number = [int(num) for num in high_diastolic_pressure]
+
+    print(low_systolic_number)
+    print(low_diastolic_number)
+    print(high_systolic_number)
+    print(high_diastolic_number)
+
+    if systolic_pressure_number <= low_systolic_number and diastolic_pressure_number <= low_diastolic_number:
+        print("Your average blood pressure is too low.\nYou should seek medical advice!")
+
+    elif systolic_pressure_number >= high_systolic_number and diastolic_pressure_number >= high_diastolic_number:
+        print("Your average blood pressure is too high.\nYou should seek medical advice!")
+
+    else:
+        print ("Your average blood pressure is normal.\nRegular check-ups are still adviced!")
+
+    # low check numbers
+    # 81, 85, 87, 90, 88, 82, 91
+    # 60, 59, 57, 61, 56, 59, 58
+    # high check numbers 
+    # 120, 124, 130, 154, 133, 129, 140
+    # 81, 89, 91, 84, 79, 88, 93
+    # normal check numbers
+    # 114, 118, 113, 117, 109, 108, 104
+    # 71, 79, 72, 77, 80, 73, 70
+
 def main():
     """
     Run all program functions
@@ -196,6 +254,7 @@ def main():
     print(average_diastolic_pressure)
     update_average_systolic_data(average_systolic_pressure)
     update_average_diastolic_data(average_diastolic_pressure)
+    check_pressure_classification()
 
 print(f"[bold magenta]Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n[/bold magenta]")
 main()
