@@ -20,6 +20,40 @@ For easier testing of results, find a set of testing numbers to enter in the use
 
 ## Contents
 
+- [Requirements](#requirements)
+- [UX](#ux)
+    - [Project Goals](#project-goals)
+    - [User Demographic](#user-demographic)
+    - [User Experience](#user-experience)
+    - [User Goals](#user-goals)
+- [Development](#development)
+- [Features](#features)
+    - [Design](#design)
+    - [Welcome Message](#welcome-message)
+    - [Instructions and User Input](#instructions-and-user-input)
+    - [Data Validation](#data-validation)
+    - [Pressure Database Update](#pressure-database-update)
+    - [Average Pressure Calculation and Result](#average-pressure-calculation-and-result)
+    - [Average Database Update](#average-database-update)
+    - [Checking Classification Database Update](#checking-classification-database-update)
+    - [Classification Result](#classification-result)
+    - [Clearing Google Sheet](#clearing-google-sheet)
+    - [End and Restart Message](#end-and-restart-message)
+- [Google Sheets](#google-sheets)
+- [Testing and Validation](#testing-and-validation)
+- [Bugs](#bugs)
+- [Technologies Used](#technologies-used)
+    - [Libraries](#libraries)
+- [Deployment](#deployment)
+    - [GitHub](#github)
+    - [Google Sheets and Google Cloud](#google-sheets-and-google-cloud)
+    - [Heroku](#heroku)
+- [Future Updates](#future-updates)
+- [Credits](#credits)
+    - [Help, Advice and Inspiration](#help-advice-and-inspiration)
+    - [Code](#code)
+    - [Content](#content)
+
 ## Requirements
 
 This website was created as the second required project for the Diploma in Full Stack Software Development from [Code Insitute](https://codeinstitute.net). 
@@ -66,7 +100,7 @@ As a User:
 - See results for my data
 - Restart the program
 
-### Development
+## Development
 
 In the first developing stage, first notes and a flowchart were created to map out the specific steps that needed to be taken to get the data for the program, validate and store it and calculate results from it. Additionally, the user needed to be taken into account and steps for providing information needed to be included.
 
@@ -233,23 +267,23 @@ The program has been tested and its code validated, the results can be viewed he
 
 During the development of the project, multiple minor bugs were encountered and solved:
 
-- The function getting the data from the user input was first set as one function. After running the program, an error led to only the first set of data entered being passed as values, overwriting the second set. This was solved by splitting the function into two (get_pressure_data_one and get_pressure_data_two). This also resulted in the following split of functions into two variants for each data set.
+- The function getting the data from the user input was first set as one function. After running the program, an error led to only the first set of data entered being passed as values, overwriting the second set. This was solved by splitting the function into two (get_pressure_data_one and get_pressure_data_two). This also resulted in the following split of functions into two variants for each data set
 
-- When getting the data from the worksheet itself, the values return in a list of lists. Simple conversion to integers needed for calculations were not possible and led to an error. This was solved by first reading the list of lists into a new single list and then converting the new list to integers.
+- When getting the data from the worksheet itself, the values return in a list of lists. Simple conversion to integers needed for calculations were not possible and led to an error. This was solved by first reading the list of lists into a new single list and then converting the new list to integers
 
-- The append.row method with only the data passed as an argument led to the data being written wrongly into the worksheets, overwriting the preset data descriptions. This was solved by also passing the method a range of or specific cell via A1 notation, that referred to the location the data should be written into. 
+- The append.row method with only the data passed as an argument led to the data being written wrongly into the worksheets, overwriting the preset data descriptions. This was solved by also passing the method a range of or specific cell via A1 notation, that referred to the location the data should be written into 
 
 During the deployment on Heroku, a major bug was encountered and solved via the help of the Code Institute Tutoring option:
 
-- The rich libary was used to design the text of the program. When first installed via "pip3 install rich" in the console, the console returned that the library was already installed. When imported in the code via "from rich import print", the methods and functions of the rich library worked correctly and showed in the console in GitPod when the program was run. The library was not passed into the requirements.txt when it was created however and therefore also not installed by Heroku when the program was deployed. This lead to an error on Heroku.
+- The rich libary was used to design the text of the program. When first installed via "pip3 install rich" in the console, the console returned that the library was already installed. When imported in the code via "from rich import print", the methods and functions of the rich library worked correctly and showed in the console in GitPod when the program was run. The library was not passed into the requirements.txt when it was created however and therefore also not installed by Heroku when the program was deployed. This lead to an error on Heroku
 
 ![Heroku Error](assets/screenshots/heroku-error.png)
 
-- As the distinct workings of libraries and the make-up of the other files of the used template were unknown, tutor support was contacted to help solve the error. When troubleshooting, calling the pip list directly from the console, also showed that the rich library was not included, although its functions worked as wanted.
+- As the distinct workings of libraries and the make-up of the other files of the used template were unknown, tutor support was contacted to help solve the error. When troubleshooting, calling the pip list directly from the console, also showed that the rich library was not included, although its functions worked as wanted
 
 ![GitPod Pip List](assets/screenshots/gitpod-pip-list.png)
 
-- In agreement with the tutor, the problem was solved by manually adding the rich library to the requirements.txt and redeploying the program on Heroku. 
+- In agreement with the tutor, the problem was solved by manually adding the rich library to the requirements.txt and redeploying the program on Heroku
 
 ![Rich Library Requirements](assets/screenshots/rich-library-requirements.png)
 
@@ -277,21 +311,21 @@ Websites:
 
 -__On GitHub, the project was set up via the following steps:__
 
-- Log in to GitHub and create repository.
+- Log in to GitHub and create repository
 - Use the [Code Institute Project 3 Template](https://github.com/Code-Institute-Org/p3-template).
 - Use the code to set up workspace on GitPod or preferred workspace
 
-### Google Sheets
+### Google Sheets and Google Cloud
 
 -__The data storage was set up on Google Sheets via the following steps:__
 
-- Log in to Google and create new Sheet with necessary starting data.
-- Open Google Cloud and create new project.
-- Navigate to APIs and services > libray.
-- Enable Google Drive API and Google Sheets API.
-- Navigate to APIs and services > credentials.
-- Create credentials / service account and download json file.
-- Go to Google Sheet and share it by passing in service account email.
+- Log in to Google and create new Sheet with necessary starting data
+- Open Google Cloud and create new project
+- Navigate to APIs and services > libray
+- Enable Google Drive API and Google Sheets API
+- Navigate to APIs and services > credentials
+- Create credentials / service account and download json file
+- Go to Google Sheet and share it by passing in service account email
 - Copy json file to project code in workspace and rename creds.json for easier access
 
 
@@ -300,24 +334,24 @@ Websites:
 - __The website was deployed to Heroku via the following steps:__
 
 - In code workspace, add necessary requirements to requirements.txt.
-- Log in to Heroku and create new App.
+- Log in to Heroku and create new App
 - In App settings, set the necessary _Config Vars_:
     - Key `PORT` and value `8000`
     - Key `CREDS` and value `contents of credentials.json file`
 - In App settings, add two buildpacks in the following order:
     1. `heroku/python`
     2. `heroku/nodejs`
-- In Deployment tab, connect to GitHub.
-- Search for project on GitHub.
-- Enable automatic deploys if wanted.
-- Deploy GitHub branch.
+- In Deployment tab, connect to GitHub
+- Search for project on GitHub
+- Enable automatic deploys if wanted
+- Deploy GitHub branch
 
 ## Future Updates
 
 The program could be improved by various future updates, including:
 
-- The option for the user to put in additional data, especially for a second week of blood pressure numbers, allowing for a better overall result.
-- The option to end the program with a user input and only delete the data then.
+- The option for the user to put in additional data, especially for a second week of blood pressure numbers, allowing for a better overall result
+- The option to end the program with a user input and only delete the data then
 
 ## Credits
 
@@ -328,9 +362,9 @@ The program could be improved by various future updates, including:
 
 ### Code
 
-- Trouble-Shooting for bugs and learning about additional code options was assissted by using [W3Schools](https://www.w3schools.com/) and [MDN Web Docs](https://developer.mozilla.org/en-US/).
-- The SCOPE setup and constant variables used in the project were taken and modified from the [Love Sandwiches Walkthrough](https://github.com/anchvo/love-sandwiches-walkthrough) project that was created during the course with [Code Institute](https://codeinstitute.net).
-- The starting functions to get_pressure_data_one, get_pressure_data_two and validate_pressure_data were inspired and modified from the versions in the [Love Sandwiches Walkthrough](https://github.com/anchvo/love-sandwiches-walkthrough) project that was created during the course with [Code Institute](https://codeinstitute.net).
+- Trouble-Shooting for bugs and learning about additional code options was assissted by using [W3Schools](https://www.w3schools.com/) and [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- The SCOPE setup and constant variables used in the project were taken and modified from the [Love Sandwiches Walkthrough](https://github.com/anchvo/love-sandwiches-walkthrough) project that was created during the course with [Code Institute](https://codeinstitute.net)
+- The starting functions to get_pressure_data_one, get_pressure_data_two and validate_pressure_data were inspired and modified from the versions in the [Love Sandwiches Walkthrough](https://github.com/anchvo/love-sandwiches-walkthrough) project that was created during the course with [Code Institute](https://codeinstitute.net)
 
 ### Content
 
