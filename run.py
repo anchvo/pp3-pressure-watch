@@ -261,6 +261,19 @@ def check_pressure_classification():
     # 71, 79, 72, 77, 80, 73, 70
 
 
+def clear_sheet_data():
+    """
+    Clears input and calculated data from
+    pressure and average worksheet after
+    program is run through
+    """
+    pressure_worksheet = SHEET.worksheet("pressure")
+    average_worksheet = SHEET.worksheet("average")
+
+    pressure_worksheet.batch_clear(["B2:H2", "B3:H3"])
+    average_worksheet.batch_clear(["B2", "B3"])
+
+
 def main():
     """
     Run all program functions
@@ -277,6 +290,7 @@ def main():
     update_average_systolic_data(average_systolic_pressure)
     update_average_diastolic_data(average_diastolic_pressure)
     check_pressure_classification()
+    clear_sheet_data()
 
 
 print(
