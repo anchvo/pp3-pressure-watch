@@ -56,7 +56,7 @@ Screenshot
 The classification workheet contains all necessary data. The data is used in a calculation function, that compares the average number to the classification numbers. This works as expected.
 Screenshot
 
-Data passed to the Sheet needs to be cleared out manually before running the program again!
+Data passed to the Sheet are cleared out via a clear function at the end of the program. This works as expected.
 
 ## Python Validation
 

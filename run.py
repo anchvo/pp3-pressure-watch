@@ -33,8 +33,8 @@ def get_pressure_data_one():
         print(("Please enter your [underline]systolic[/underline]"
               "(upper number) blood pressure numbers "
                "for the last seven days."))
-        print("Numbers should be separated by commas.")
-        print("Example: 110, 115, 105, 98, 113, 99, 102\n")
+        print("[italic]Numbers should be separated by commas.[/italic]")
+        print("[italic]Example: 110, 115, 105, 98, 113, 99, 102\n[/italic]")
 
         data_str_one = input("Enter your systolic numbers here:\n")
 
@@ -44,7 +44,7 @@ def get_pressure_data_one():
 
         if validate_pressure_data(pressure_systolic_data):
             # Breaks the loop if data is valid and ends user input
-            print("Data is valid!\n")
+            print("[italic green]Data is valid!\n[/italic green]")
             break
     
     return pressure_systolic_data
@@ -62,8 +62,9 @@ def get_pressure_data_two():
         print(("Please enter your [underline]diastolic[/underline]"
               "(lower number) blood pressure numbers "
                "for the last seven days."))
-        print("Numbers should be separated by commas.")
-        print("Example: 79, 82, 75, 72, 80, 71, 76\n")
+        print("[italic]Numbers should be separated by commas.[/italic]")
+        print("[italic]Example: 79, 82, 75, 72, 80, 71, 76\n[/italic]")
+
         data_str_two = input("Enter your diastolic numbers here:\n")
 
         pressure_diastolic_data = data_str_two.split(",")
@@ -72,7 +73,7 @@ def get_pressure_data_two():
 
         if validate_pressure_data(pressure_diastolic_data):
             # Breaks the loop if data is valid and ends user input
-            print("Data is valid!\n")
+            print("[italic green]Data is valid!\n[/italic green]")
             break
 
     return pressure_diastolic_data
@@ -92,8 +93,8 @@ def validate_pressure_data(values):
         if len(values) != 7:
             # Should length of the values list not be seven (for seven days)
             raise ValueError(
-                f"Numbers for the last seven days are needed, "
-                f"you provided {len(values)}."
+                f"[red]Numbers for the last seven days are needed, "
+                f"you provided {len(values)}.[/red]"
             )
         #elif 40 <= value <= 400:
             # Should entered number be below 50 or above 400
@@ -103,7 +104,7 @@ def validate_pressure_data(values):
 
     except ValueError as e:
         # Common shorthand variable e for error
-        print(f"Invalid data: {e}. Please try again.\n")
+        print(f"[red]Invalid data: {e}. Please try again.\n[/red]")
         return False
         # Returns False because data is invalid
         # which is picked up by while loop and tells it to continue running
@@ -117,10 +118,10 @@ def update_systolic_data(data_one):
     Updates systolic data in pressure worksheet,
     add a new row with the list data from data_one
     """
-    print("Updating systolic pressure data...\n")
+    print("[italic yellow]Updating systolic pressure data...\n[/italic yellow]")
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_one, table_range="B2:H2")
-    print("Database updated!\n")
+    print("[italic green]Database updated!\n[/italic green]")
 
 
 def update_diastolic_data(data_two):
@@ -128,10 +129,10 @@ def update_diastolic_data(data_two):
     Updates diastolic data in pressure worksheet,
     add a new row with the list data from data_two
     """
-    print("Updating diastolic pressure data...\n")
+    print("[italic yellow]Updating diastolic pressure data...\n[/italic yellow]")
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_two, table_range="B3:H3")
-    print("Database updated!\n")
+    print("[italic green]Database updated!\n[/italic green]")
 
 
 def calculate_average_systolic():
@@ -140,7 +141,7 @@ def calculate_average_systolic():
     over the last seven days based on provided data
     stored in worksheet
     """
-    print("Calculating average systolic...\n")
+    print("[italic yellow]Calculating average systolic...\n[/italic yellow]")
 
     pressure_worksheet = SHEET.worksheet("pressure")
     systolic_data = pressure_worksheet.get("B2:H2")
@@ -151,8 +152,8 @@ def calculate_average_systolic():
     average_systolic = round(average)
 
     print(
-        f"Your average systolic blood pressure "
-        f"over the last seven days is {average_systolic}\n"
+        f"[bold]Your average systolic blood pressure\n"
+        f"over the last seven days is {average_systolic}\n[/bold]"
         )
 
     return average_systolic
@@ -164,7 +165,7 @@ def calculate_average_diastolic():
     over the last seven days based on provided data
     stored in worksheet
     """
-    print("Calculating average diastolic...\n")
+    print("[italic yellow]Calculating average diastolic...\n[/italic yellow]")
 
     pressure_worksheet = SHEET.worksheet("pressure")
     diastolic_data = pressure_worksheet.get("B3:H3")
@@ -175,8 +176,8 @@ def calculate_average_diastolic():
     average_diastolic = round(average)
 
     print(
-        f"Your average diastolic blood pressure "
-        f"over the last seven days is {average_diastolic}\n"
+        f"[bold]Your average diastolic blood pressure\n"
+        f"over the last seven days is {average_diastolic}\n[/bold]"
         )
     
     return average_diastolic
@@ -187,10 +188,10 @@ def update_average_systolic_data(average_systolic_pressure):
     Updates average systolic data in average worksheet,
     add a new row with the calculated average
     """
-    print("Updating systolic average data...\n")
+    print("[italic yellow]Updating systolic average data...\n[/italic yellow]")
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B2", average_systolic_pressure)
-    print("Database updated!\n")
+    print("[italic green]Database updated!\n[/italic green]")
 
 
 def update_average_diastolic_data(average_diastolic_pressure):
@@ -198,10 +199,10 @@ def update_average_diastolic_data(average_diastolic_pressure):
     Updates average diastolic data in average worksheet,
     add a new row with the calculated average
     """
-    print("Updating diastolic average data...\n")
+    print("[italic yellow]Updating diastolic average data...\n[/italic yellow]")
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B3", average_diastolic_pressure)
-    print("Database updated!\n")
+    print("[italic green]Database updated!\n[/italic green]")
 
 
 def check_pressure_classification():
@@ -210,7 +211,7 @@ def check_pressure_classification():
     the classification data in classification worksheet,
     gives result and recommendation to the user
     """
-    print("Checking classification database...")
+    print("[italic yellow]Checking classification database...\n[/italic yellow]")
     average_worksheet = SHEET.worksheet("average")
     classification_worksheet = SHEET.worksheet("classification")
 
@@ -238,17 +239,17 @@ def check_pressure_classification():
 
     if (systolic_pressure_number <= low_systolic_number
        and diastolic_pressure_number <= low_diastolic_number):
-        print(("Your average blood pressure is too low.\n"
-              "You should seek medical advice!\n"))
+        print(("[bold red]Your average blood pressure is too low.\n"
+              "You should seek medical advice!\n[/bold red]"))
 
     elif (systolic_pressure_number >= high_systolic_number
           and diastolic_pressure_number >= high_diastolic_number):
-        print(("Your average blood pressure is too high.\n"
-              "You should seek medical advice!\n"))
+        print(("[bold red]Your average blood pressure is too high.\n"
+              "You should seek medical advice!\n[/bold red]"))
 
     else:
-        print(("Your average blood pressure is normal.\n"
-              "Regular check-ups are still adviced!\n"))
+        print(("[bold green]Your average blood pressure is normal.\n"
+              "Regular check-ups are still adviced!\n[/bold green]"))
 
     # low check numbers
     # 81, 85, 87, 90, 88, 82, 91
