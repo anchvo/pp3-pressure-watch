@@ -102,7 +102,6 @@ def validate_pressure_data(values):
         return False
         # Returns False because data is invalid
         # which is picked up by while loop and tells it to continue running
-    
     return True
     # Data is valid and returns true, tells the while loop to break
 
@@ -112,7 +111,9 @@ def update_systolic_data(data_one):
     Updates systolic data in pressure worksheet,
     add a new row with the list data from data_one
     """
-    print("[italic yellow]Updating systolic pressure data...\n[/italic yellow]")
+    print(
+        "[italic yellow]Updating systolic pressure data...\n[/italic yellow]"
+        )
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_one, table_range="B2:H2")
     print("[italic green]Database updated!\n[/italic green]")
@@ -123,7 +124,9 @@ def update_diastolic_data(data_two):
     Updates diastolic data in pressure worksheet,
     add a new row with the list data from data_two
     """
-    print("[italic yellow]Updating diastolic pressure data...\n[/italic yellow]")
+    print(
+        "[italic yellow]Updating diastolic pressure data...\n[/italic yellow]"
+        )
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_two, table_range="B3:H3")
     print("[italic green]Database updated!\n[/italic green]")
@@ -191,7 +194,9 @@ def update_average_diastolic_data(average_diastolic_pressure):
     Updates average diastolic data in average worksheet,
     add a new row with the calculated average
     """
-    print("[italic yellow]Updating diastolic average data...\n[/italic yellow]")
+    print(
+        "[italic yellow]Updating diastolic average data...\n[/italic yellow]"
+        )
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B3", average_diastolic_pressure)
     print("[italic green]Database updated!\n[/italic green]")
@@ -203,7 +208,9 @@ def check_pressure_classification():
     the classification data in classification worksheet,
     gives result and recommendation to the user
     """
-    print("[italic yellow]Checking classification database...\n[/italic yellow]")
+    print(
+        "[italic yellow]Checking classification database...\n[/italic yellow]"
+        )
     average_worksheet = SHEET.worksheet("average")
     classification_worksheet = SHEET.worksheet("classification")
 
@@ -289,4 +296,3 @@ print(
     f"[italic]If you want to run again,\n"
     f"click the button 'Run Program' at the top![/italic]"
     )
-
