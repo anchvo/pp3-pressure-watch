@@ -81,6 +81,14 @@ Basic requirements:
 
 ## Google Sheets
 
+![Google Sheets Pressure](assets/screenshots/google-sheets-pressure-empty.png)
+![Google Sheets Average](assets/screenshots/google-sheets-average-empty.png)
+![Google Sheets Classification](assets/screenshots/google-sheets-classification.png)
+
+![Google Sheets Pressure User Input](assets/screenshots/google-sheets-pressure-user-input.png)
+
+![Google Sheets Average Calculated Input](assets/screenshots/google-sheets-average-calculated-input.png)
+
 ## Testing and Validation
 
 ## Bugs
