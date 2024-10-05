@@ -87,11 +87,11 @@ def validate_pressure_data(values):
             raise ValueError(
                 f"Numbers for the last seven days are needed, you provided {len(values)}."
             )
-        elif 40 <= value <= 400:
+        #elif 40 <= value <= 400:
             # Should entered number be below 50 or above 400
-            raise ValueError(
-                f"Numbers should be between 40 and 400."
-            )
+            #raise ValueError(
+            #    f"Numbers should be between 40 and 400."
+            #)
 
     except ValueError as e:
         # Common shorthand variable e for error
@@ -199,8 +199,6 @@ def check_pressure_classification():
     diastolic_pressure = sum(diastolic_average, [])
     systolic_pressure_number = [int(num) for num in systolic_pressure]
     diastolic_pressure_number = [int(num) for num in diastolic_pressure]
-    print(systolic_pressure_number)
-    print(diastolic_pressure_number)
 
     low_systolic = classification_worksheet.get("B2")
     low_diastolic = classification_worksheet.get("B3")
@@ -217,19 +215,14 @@ def check_pressure_classification():
     high_systolic_number = [int(num) for num in high_systolic_pressure]
     high_diastolic_number = [int(num) for num in high_diastolic_pressure]
 
-    print(low_systolic_number)
-    print(low_diastolic_number)
-    print(high_systolic_number)
-    print(high_diastolic_number)
-
     if systolic_pressure_number <= low_systolic_number and diastolic_pressure_number <= low_diastolic_number:
-        print("Your average blood pressure is too low.\nYou should seek medical advice!")
+        print("Your average blood pressure is too low.\nYou should seek medical advice!\n")
 
     elif systolic_pressure_number >= high_systolic_number and diastolic_pressure_number >= high_diastolic_number:
-        print("Your average blood pressure is too high.\nYou should seek medical advice!")
+        print("Your average blood pressure is too high.\nYou should seek medical advice!\n")
 
     else:
-        print ("Your average blood pressure is normal.\nRegular check-ups are still adviced!")
+        print ("Your average blood pressure is normal.\nRegular check-ups are still adviced!\n")
 
     # low check numbers
     # 81, 85, 87, 90, 88, 82, 91
@@ -250,17 +243,15 @@ def main():
     pressure_systolic_data = [int(num) for num in data_one]
     pressure_diastolic_data = [int(num) for num in data_two]
     # Converts both data sets from string to integers
-    print(pressure_systolic_data)
-    print(pressure_diastolic_data)
     update_systolic_data(pressure_systolic_data)
     update_diastolic_data(pressure_diastolic_data)
     average_systolic_pressure = calculate_average_systolic()
     average_diastolic_pressure = calculate_average_diastolic()
-    print(average_systolic_pressure)
-    print(average_diastolic_pressure)
     update_average_systolic_data(average_systolic_pressure)
     update_average_diastolic_data(average_diastolic_pressure)
     check_pressure_classification()
 
 print(f"[bold magenta]Welcome to Pressure Watch!:red_heart-emoji:\nA quick and easy way to check if your blood pressure is something to worry about!\n[/bold magenta]")
 main()
+
+print(f"[bold magenta]Thank you for using Pressure Watch!:red_heart-emoji:[/bold magenta]\n[italic]If you want to run again,\nclick the button 'Run Program' at the top![/italic]")
