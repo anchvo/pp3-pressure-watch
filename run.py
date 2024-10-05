@@ -156,15 +156,25 @@ def calculate_average_diastolic():
     
     return average_diastolic
 
-#def update_average_systolic_data(data_one):
-    #"""
-    #Updates average systolic data in average worksheet,
-    #add a new row with the calculated average
-    #"""
-    #print("Updating systolic average data...\n")
-    #average_worksheet = SHEET.worksheet("average")
-    #average_worksheet.append_row(data_one, table_range="B2")
-    #print("Database updated!\n")
+def update_average_systolic_data(average_systolic_pressure):
+    """
+    Updates average systolic data in average worksheet,
+    add a new row with the calculated average
+    """
+    print("Updating systolic average data...\n")
+    average_worksheet = SHEET.worksheet("average")
+    average_worksheet.update_acell("B2", average_systolic_pressure)
+    print("Database updated!\n")
+
+def update_average_diastolic_data(average_diastolic_pressure):
+    """
+    Updates average diastolic data in average worksheet,
+    add a new row with the calculated average
+    """
+    print("Updating diastolic average data...\n")
+    average_worksheet = SHEET.worksheet("average")
+    average_worksheet.update_acell("B3", average_diastolic_pressure)
+    print("Database updated!\n")
 
 def main():
     """
@@ -183,7 +193,8 @@ def main():
     average_diastolic_pressure = calculate_average_diastolic()
     print(average_systolic_pressure)
     print(average_diastolic_pressure)
-    #update_average_systolic_data(average_systolic_pressure)
+    update_average_systolic_data(average_systolic_pressure)
+    update_average_diastolic_data(average_diastolic_pressure)
 
 print(f"Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n")
 main()
