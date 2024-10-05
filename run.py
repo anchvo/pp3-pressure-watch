@@ -85,8 +85,14 @@ def validate_pressure_data(values):
         if len(values) != 7:
             # Should length of the values list not be seven (for seven days)
             raise ValueError(
-                f"Numbers for the last seven days are needed, you provided {len(values)}"
+                f"Numbers for the last seven days are needed, you provided {len(values)}."
             )
+        elif 40 <= value <= 400:
+            # Should entered number be below 50 or above 400
+            raise ValueError(
+                f"Numbers should be between 40 and 400."
+            )
+
     except ValueError as e:
         # Common shorthand variable e for error
         print(f"Invalid data: {e}. Please try again.\n")
