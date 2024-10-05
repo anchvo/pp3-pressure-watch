@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from rich import print
 
 # Values of variables do not change so they 
 # are constant variables written in capital letters
@@ -196,5 +197,5 @@ def main():
     update_average_systolic_data(average_systolic_pressure)
     update_average_diastolic_data(average_diastolic_pressure)
 
-print(f"Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n")
+print(f"[bold magenta]Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n[/bold magenta]")
 main()
