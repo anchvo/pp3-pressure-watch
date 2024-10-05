@@ -1,4 +1,5 @@
 # Pressure Watch
+![Pressure Watch]()
 
 ## Contents
 
@@ -26,6 +27,28 @@ Basic requirements:
 ### Development
 
 ## Features
+
+### Design
+
+### Welcome Message
+
+### Introductions
+
+### User Input
+
+### Data Validation
+
+### Pressure Database Update
+
+### Average Pressure Calculation and Result
+
+### Average Database Update
+
+### Checking Classification Database Update
+
+### Classification Result
+
+### End and Restart Message
 
 ### Error Page
 
