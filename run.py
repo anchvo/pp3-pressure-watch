@@ -29,7 +29,7 @@ def get_pressure_data_one():
     while True:
         # First loop for user input to repeat asking for input 
         # while first set of data is invalid
-        print("Please enter your systolic (upper number) blood pressure numbers for the last seven days.")
+        print("Please enter your [underline]systolic[/underline] (upper number) blood pressure numbers for the last seven days.")
         print("Numbers should be separated by commas.")
         print("Example: 110, 115, 105, 98, 113, 99, 102\n")
 
@@ -55,7 +55,7 @@ def get_pressure_data_two():
     while True:
         # Second loop for user input to repeat asking for input 
         # while second set of data is invalid
-        print("Please enter your diastolic (lower number) blood pressure numbers for the last seven days.")
+        print("Please enter your [underline]diastolic[/underline] (lower number) blood pressure numbers for the last seven days.")
         print("Numbers should be separated by commas.")
         print("Example: 79, 82, 75, 72, 80, 71, 76\n")
         data_str_two = input("Enter your diastolic numbers here:\n")
@@ -262,5 +262,5 @@ def main():
     update_average_diastolic_data(average_diastolic_pressure)
     check_pressure_classification()
 
-print(f"[bold magenta]Welcome to Pressure Watch!\nA quick and easy way to check if your blood pressure is something to worry about\n[/bold magenta]")
+print(f"[bold magenta]Welcome to Pressure Watch!:red_heart-emoji:\nA quick and easy way to check if your blood pressure is something to worry about!\n[/bold magenta]")
 main()
