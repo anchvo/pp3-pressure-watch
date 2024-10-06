@@ -1,3 +1,4 @@
+# Imports
 import gspread
 from google.oauth2.service_account import Credentials
 from rich import print
@@ -20,6 +21,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("pressure_watch")
 # Opens the exel sheet in google account that was set up before,
 # name needs to be exact
+
+
+# Functions
 
 
 def get_pressure_data_one():
@@ -90,11 +94,6 @@ def validate_pressure_data(values):
                 f"[red]Numbers for the last seven days are needed, "
                 f"you provided {len(values)}.[/red]"
             )
-        # elif 40 <= value <= 400:
-            # Should entered number be below 50 or above 400
-            # raise ValueError(
-            #    f"Numbers should be between 40 and 400."
-            # )
 
     except ValueError as e:
         # Common shorthand variable e for error
@@ -116,6 +115,9 @@ def update_systolic_data(data_one):
         )
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_one, table_range="B2:H2")
+    # Table_range refers to multiple cells together,
+    # needs to be passed as second argument,
+    # using A1 Notation
     print("[italic green]Database updated!\n[/italic green]")
 
 
@@ -129,6 +131,9 @@ def update_diastolic_data(data_two):
         )
     pressure_worksheet = SHEET.worksheet("pressure")
     pressure_worksheet.append_row(data_two, table_range="B3:H3")
+    # Table_range refers to multiple cells together,
+    # needs to be passed as second argument,
+    # using A1 Notation
     print("[italic green]Database updated!\n[/italic green]")
 
 
@@ -144,6 +149,7 @@ def calculate_average_systolic():
     systolic_data = pressure_worksheet.get("B2:H2")
 
     systolic_list = sum(systolic_data, [])
+    # Removes list from list of lists
     systolic_numbers = [int(num) for num in systolic_list]
     average = sum(systolic_numbers) / 7
     average_systolic = round(average)
@@ -167,6 +173,7 @@ def calculate_average_diastolic():
     diastolic_data = pressure_worksheet.get("B3:H3")
 
     diastolic_list = sum(diastolic_data, [])
+    # Removes list from list of lists
     diastolic_numbers = [int(num) for num in diastolic_list]
     average = sum(diastolic_numbers) / 7
     average_diastolic = round(average)
@@ -186,6 +193,9 @@ def update_average_systolic_data(average_systolic_pressure):
     print("[italic yellow]Updating systolic average data...\n[/italic yellow]")
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B2", average_systolic_pressure)
+    # Acell refers to specific cell,
+    # needs to be passed as first argument
+    # using A1 Notation
     print("[italic green]Database updated!\n[/italic green]")
 
 
@@ -199,6 +209,9 @@ def update_average_diastolic_data(average_diastolic_pressure):
         )
     average_worksheet = SHEET.worksheet("average")
     average_worksheet.update_acell("B3", average_diastolic_pressure)
+    # Acell refers to specific cell,
+    # needs to be passed as first argument
+    # using A1 Notation
     print("[italic green]Database updated!\n[/italic green]")
 
 
@@ -218,6 +231,7 @@ def check_pressure_classification():
     diastolic_average = average_worksheet.get("B3")
     systolic_pressure = sum(systolic_average, [])
     diastolic_pressure = sum(diastolic_average, [])
+    # Removes list from list of lists
     systolic_pressure_number = [int(num) for num in systolic_pressure]
     diastolic_pressure_number = [int(num) for num in diastolic_pressure]
 
@@ -230,6 +244,7 @@ def check_pressure_classification():
     low_diastolic_pressure = sum(low_diastolic, [])
     high_systolic_pressure = sum(high_systolic, [])
     high_diastolic_pressure = sum(high_diastolic, [])
+    # Removes list from list of lists
 
     low_systolic_number = [int(num) for num in low_systolic_pressure]
     low_diastolic_number = [int(num) for num in low_diastolic_pressure]
@@ -248,7 +263,7 @@ def check_pressure_classification():
 
     else:
         print(("[bold green]Your average blood pressure is normal.\n"
-              "Regular check-ups are still adviced!\n[/bold green]"))
+              "Regular check-ups are still advised!\n[/bold green]"))
 
 
 def clear_sheet_data():
@@ -262,6 +277,8 @@ def clear_sheet_data():
 
     pressure_worksheet.batch_clear(["B2:H2", "B3:H3"])
     average_worksheet.batch_clear(["B2", "B3"])
+    # Batch_clear clears a range of multiple cells at once
+    # using A1 Notation
 
 
 def main():
@@ -288,6 +305,8 @@ print(
     f"A quick and easy way to check "
     f"if your blood pressure is something to worry about!\n[/bold magenta]"
     )
+# Welcome Message
+
 main()
 
 print(
@@ -296,3 +315,4 @@ print(
     f"[italic]If you want to run again,\n"
     f"click the button 'Run Program' at the top![/italic]"
     )
+# End and Restart Message
