@@ -39,7 +39,7 @@ For easier testing of results, find a set of testing numbers to enter in the use
     - [Classification Result](#classification-result)
     - [Clearing Google Sheet](#clearing-google-sheet)
     - [End and Restart Message](#end-and-restart-message)
-    - [Error Page]
+    - [Error Page](#error-page)
 - [Google Sheets](#google-sheets)
 - [Testing and Validation](#testing-and-validation)
 - [Bugs](#bugs)
