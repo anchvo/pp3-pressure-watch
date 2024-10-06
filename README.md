@@ -39,6 +39,7 @@ For easier testing of results, find a set of testing numbers to enter in the use
     - [Classification Result](#classification-result)
     - [Clearing Google Sheet](#clearing-google-sheet)
     - [End and Restart Message](#end-and-restart-message)
+    - [Error Page]
 - [Google Sheets](#google-sheets)
 - [Testing and Validation](#testing-and-validation)
 - [Bugs](#bugs)
@@ -235,6 +236,10 @@ As the program has a basic Command Line Interface (CLI) and is therefore simply 
 - The user is also informed, that they can run the program again by clicking the "Run Program" button at the top
 
 ![End and Restart Message](assets/screenshots/end-and-restart-message.png)
+
+### Error Page
+
+A basic 404.html error page has been included to show up if the progame site could not be loaded.
 
 ## Google Sheets
 

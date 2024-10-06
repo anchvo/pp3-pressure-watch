@@ -59,11 +59,13 @@ Data passed to the Sheet are cleared out via a clear function at the end of the 
 
 ## Python Validation
 
-The Python code was run through the [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/#) and returned no errors.
+The Python code was passed through the [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/#) and returned no errors.
 
 ![Pressure Watch CI Python Linter](assets/screenshots/pressure-watch-ci-python-linter.png)
 
+## HTML Validation
 
+The HTML code for the 404.html error page was passed through the [W3C validator](https://validator.w3.org/) and returned no errors.
 
 
 
