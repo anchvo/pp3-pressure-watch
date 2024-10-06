@@ -39,6 +39,8 @@ The following tests were carried out to ensure the portal is working correctly
 The program was tested in the following browsers by myself and others: 
 
 - Firefox 
+- Brave
+- Safari
 
 It worked without issues in the above browsers
 

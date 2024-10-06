@@ -314,6 +314,7 @@ Websites:
 - Log in to GitHub and create repository
 - Use the [Code Institute Project 3 Template](https://github.com/Code-Institute-Org/p3-template).
 - Use the code to set up workspace on GitPod or preferred workspace
+- Optional: fork or clone the repository by creating a new branch
 
 ### Google Sheets and Google Cloud
 
@@ -350,8 +351,10 @@ Websites:
 
 The program could be improved by various future updates, including:
 
+- Additonal data validation to set tighter constraints for what data can be entered e.g. a specific number range for the values
 - The option for the user to put in additional data, especially for a second week of blood pressure numbers, allowing for a better overall result
 - The option to end the program with a user input and only delete the data then
+- Code optimisation to minimise repeated code. Especially when more used to working with Python and more advanced in the learning stage, optimisation processes should be considered
 
 ## Credits
 
